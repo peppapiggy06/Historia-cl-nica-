@@ -1,0 +1,104 @@
+@startuml
+class Disease {
+  - disease_name: String
+  - diagnosis_date: Date
+  - treatment: String
+  --
+  + Disease()
+  + Disease(disease_name: String, diagnosis_date: Date, treatment: String)
+  + getDisease_name(): String
+  + setDisease_name(disease_name: String): void
+  + getDiagnosis_date(): Date
+  + setDiagnosis_date(diagnosis_date: Date): void
+  + getTreatment(): String
+  + setTreatment(treatment: String): void
+}
+@enduml
+
+@startuml
+class Photo {
+  - photo_name: String
+  - photo_date: Date
+  - photo_type: String
+  - doctor_comments: String
+  --
+  + Photo()
+  + Photo(photo_name: String, photo_date: Date, photo_type: String, doctor_comments: String)
+  + getPhoto_name(): String
+  + setPhoto_name(photo_name: String): void
+  + getPhoto_date(): Date
+  + setPhoto_date(photo_date: Date): void
+  + getPhoto_type(): String
+  + setPhoto_type(photo_type: String): void
+  + getDoctor_comments(): String
+  + setDoctor_comments(doctor_comments: String): void
+}
+@enduml
+
+@startuml
+class Patient {
+  - id: String 
+  - weight: double
+  - first_name: String
+  - last_name: String
+  - height: double
+  - birth_date: Date
+  - address: String
+  - gender: char
+  - photo: Photo[]
+  - disease: Disease[]
+  - quantity_photo: int
+  - quantity_max: int
+  --
+  + Patient()
+  + Patient(id: String, weight: double, first_name: String, last_name: String, height: Double, birth_date: Date, address: String, gender: char)
+  + getId(): String 
+  + setId(Id: String): void
+  + getWeight(): double
+  + setWeight(weight: double): void
+  + getFirst_name(): String
+  + setFirst_name(first_name: String): void
+  + getLast_name(): String
+  + setLast_name(last_name: String): void
+  + getHeight(): double
+  + setHeight(height: double): void
+  + getBirth_date(): Date
+  + setBirth_date(birth_date: Date): void
+  + getAddress(): String
+  + setAddress(address: String): void
+  + getGender(): char
+  + setGender(gender: char): void
+  + add_photo(photo: Photo): void
+  + delete_photo(photo: Photo): void
+  + search_photo(photo: Photo): int
+  + add_disease(disease: Disease): void
+  + delete_disease(disease: Disease): void
+  + search_disease(disease: Disease): int
+  + has_dengue():boolean
+} 
+@enduml
+
+@staruml
+Class Hospital {
+  - patient: Patient []
+  - quantity_patient: int
+  - quantity_maxPatient: int
+  --
+  + Hospital ()
+  + hospital (patient: Patient [] ,  quantity_patient: int, quantity_maxPatient: int)
+  + getPatient(): Patient[]
+  + setPatient(patient: Patient[]):void
+  +getQuantity_patient(): int         +setQuantity_patient(Quantity_patient: int): void 
+  +getQuantity_maxPatient(): int
++setQuantity_maxPatient(Quantity_maxPatient: int): void
+  + add_patient(patient: Patient): void
+  + delete_patient(patient: Patient): void
+  + search_patient(patient: Patient): int
+  + heigth_max_patient(): double
+  + id_of_the_tallest(heigth: double): String
+  + count_woman_with_dengue(): int
+}
+@enduml
+Patient "1" o-- "*" Disease : contains
+Patient "1" o-- "*" Photo : contains 
+Hospital "1" o-- "*" Patient: contains
